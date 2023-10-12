@@ -1,13 +1,18 @@
 package com.example.synchronizedclock;
 
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Handler;
-import android.widget.TextView;
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.Button;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView clockTextView;
+    private Button formatToggleButton;
+    private boolean is24HourFormat = true; // Initial format is 24-hour
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +20,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         clockTextView = findViewById(R.id.clockTextView);
+        formatToggleButton = findViewById(R.id.formatToggleButton);
+
+        formatToggleButton.setOnClickListener(view -> toggleTimeFormat());
 
         // Create a handler to update the clock every 10 sec
         final Handler handler = new Handler();
@@ -26,14 +34,27 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void updateClock() {
         // Get the current time
         long currentTime = System.currentTimeMillis();
 
-        // Convert the time to a readable format (e.g., 12:00 AM)
-        String time = android.text.format.DateFormat.getTimeFormat(this).format(currentTime);
+        // Format the time based on the selected format
+        SimpleDateFormat sdf;
+        if (is24HourFormat) {
+            sdf = new SimpleDateFormat("HH:mm", Locale.getDefault());
+        } else {
+            sdf = new SimpleDateFormat("hh:mm a", Locale.getDefault());
+        }
+
+        String time = sdf.format(currentTime);
 
         // Update the TextView with the current time
         clockTextView.setText(time);
+    }
+
+    public void toggleTimeFormat() {
+        is24HourFormat = !is24HourFormat;
+        updateClock(); // Update the clock format
     }
 }
