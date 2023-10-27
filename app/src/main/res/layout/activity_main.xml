@@ -8,21 +8,23 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/clockTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="131dp"
+            android:layout_marginStart="100dp"
             android:layout_marginTop="100dp"
-            android:layout_marginEnd="131dp"
-            android:text="hh:mm"
-            android:textSize="48sp"
+            android:layout_marginEnd="0dp"
             android:gravity="center"
+            android:text="hh:mm:ss"
+            android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            />
+            app:layout_constraintTop_toTopOf="parent" />
+
     </FrameLayout>
+
     <Button
         android:id="@+id/formatToggleButton"
         android:layout_width="wrap_content"

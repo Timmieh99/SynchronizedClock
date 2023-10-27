@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.synchronizedclock"
-        minSdk = 24
+        minSdk = 29
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-
+    implementation("commons-net:commons-net:3.8.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
